@@ -19,6 +19,7 @@ app.use(cors(corsOptions));
 app.use(express.static('public'));
 
 app.use(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   (error: CustomError, _req: Request, resp: Response, _next: NextFunction) => {
     debug('error middleware');
     const status = error.statusCode || 500;
