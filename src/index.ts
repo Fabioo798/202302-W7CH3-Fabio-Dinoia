@@ -2,7 +2,6 @@ import http from 'http';
 import createDebug from 'debug';
 import { app } from './app.js';
 import { dbConnect } from './db/db.connect.js';
-import mongoose from 'mongoose';
 
 const debug = createDebug('W7CH3: index');
 const PORT = process.env.port || 4000;

@@ -21,7 +21,7 @@ app.use(express.static('public'));
 // App.use('/things', thingsRouter);
 // app.use('/things/:id', thingsRouter);
 
-app.use((error: CustomError, _req: Request, resp: Response, next: NextFunction) => {
+app.use((error: CustomError, _req: Request, resp: Response, _next: NextFunction) => {
   debug('error middleware');
   const status = error.statusCode || 500;
   const statusMessage = error.statusMessage || 'Internal server error';

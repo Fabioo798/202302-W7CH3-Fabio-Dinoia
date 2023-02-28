@@ -7,4 +7,3 @@ export const config = {
   cluster: process.env.CLUSTER,
   dbname: process.env.NAME,
 };
-
