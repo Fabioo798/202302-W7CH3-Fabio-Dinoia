@@ -1,5 +1,5 @@
-import { model, Schema, SchemaTypes } from "mongoose";
-import { Char } from "../entities/Char";
+import { model, Schema, SchemaTypes } from 'mongoose';
+import { Char } from '../entities/char.js';
 
 const charSchema = new Schema<Char>({
   id: {
@@ -16,7 +16,7 @@ const charSchema = new Schema<Char>({
     type: SchemaTypes.String,
     require: true,
     unique: true,
-  }
+  },
 });
 
 export const CharModel = model('Char', charSchema, 'chars');
