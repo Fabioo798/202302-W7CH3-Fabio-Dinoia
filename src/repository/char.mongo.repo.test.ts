@@ -37,7 +37,6 @@ describe('Given', () => {
     test('Then it should create a new Char', async () => {
       (CharModel.find as jest.Mock).mockResolvedValue('[{"id": "1"}]');
 
-      const result = await repo.create({ id: '2', name: 'test' });
       expect(CharModel.create).toHaveBeenCalled();
     });
   });
