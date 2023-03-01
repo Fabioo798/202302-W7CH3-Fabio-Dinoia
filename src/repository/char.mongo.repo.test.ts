@@ -37,6 +37,17 @@ describe('Given', () => {
     });
   });
 
+  describe('When i use search', () => {
+    beforeEach(async () => {
+      (CharModel.find as jest.Mock).mockResolvedValue([]);
+    });
+    test('Then should return the created data', async () => {
+      const result = await repo.search({ key: 'test', value: 'true' });
+
+      expect(result).toEqual([]);
+    });
+  });
+
   describe('When i use create', () => {
     test('Then it should create a new Char', async () => {
       (CharModel.create as jest.Mock).mockResolvedValue({ name: 'test' });
