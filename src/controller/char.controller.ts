@@ -1,6 +1,6 @@
 import createDebug from 'debug';
 import { NextFunction, Response, Request } from 'express';
-import { CharRepo } from '../repository/char.mongo.repo';
+import { CharRepo } from '../repository/char.mongo.repo.js';
 
 const debug = createDebug('W7: controller');
 
