@@ -6,4 +6,5 @@ export const config = {
   pass: process.env.PASSWORD,
   cluster: process.env.CLUSTER,
   dbname: process.env.NAME,
+  jwtsecret: process.env.SECRET
 };
