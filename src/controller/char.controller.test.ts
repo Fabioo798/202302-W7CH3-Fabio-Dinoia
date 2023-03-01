@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
-import { CharRepo } from "../repository/char.mongo.repo";
-import { CharsController } from "./char.controller";
+import { NextFunction, Request, Response } from 'express';
+import { CharRepo } from '../repository/char.mongo.repo';
+import { CharsController } from './char.controller';
 
 describe('Given the  CharController', () => {
   const repo: CharRepo = {

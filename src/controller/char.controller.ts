@@ -61,7 +61,8 @@ export class CharsController {
   async delete(req: Request, resp: Response, next: NextFunction) {
     debug('delete');
     try {
-      this.repo.destroy(req.params.id);
+      const paramId = req.params.id;
+      await this.repo.destroy(paramId);
       resp.json({
         results: [],
       });

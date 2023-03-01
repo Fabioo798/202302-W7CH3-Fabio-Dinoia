@@ -38,9 +38,15 @@ export class CharRepo implements Repo<Char> {
   }
 
   async destroy(id: string): Promise<void> {
-    debug('delete');
-    const data = await CharModel.findByIdAndRemove(id);
+    debug('destroy method');
+
+    const data = await CharModel.findByIdAndDelete(id);
+
     if (!data)
-      throw new HTTPError(404, 'Not found', 'Delete interrupted, id not found');
+      throw new HTTPError(
+        404,
+        'Not found',
+        'Delete not possible: ID not found '
+      );
   }
 }

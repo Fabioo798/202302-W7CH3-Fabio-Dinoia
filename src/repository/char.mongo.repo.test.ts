@@ -31,6 +31,10 @@ describe('Given', () => {
       expect(CharModel.findById).toHaveBeenCalled();
       expect(result).toEqual({ id: '1' });
     });
+    test('Then if the findById method resolve value to undefined, it should throw an Error', async () => {
+      (CharModel.findById as jest.Mock).mockResolvedValue(null);
+      expect(async () => repo.queryId('')).rejects.toThrow();
+    });
   });
 
   describe('When i use create', () => {
@@ -58,16 +62,29 @@ describe('Given', () => {
       expect(CharModel.find).toHaveBeenCalled();
       expect(result).toEqual({ id: '2' });
     });
+    test('Then if the findByIdAndUpdate method resolve value to undefined, it should throw an Error', async () => {
+      const mockChar = {
+        id: '2',
+        name: 'test',
+      } as Partial<Char>;
+      (CharModel.findByIdAndUpdate as jest.Mock).mockResolvedValue(null);
+      expect(async () => repo.update(mockChar)).rejects.toThrow();
+    });
   });
 
   describe('When the delete method is used', () => {
     beforeEach(async () => {
-      (CharModel.findByIdAndRemove as jest.Mock).mockResolvedValue({ id: '1' });
+      (CharModel.findByIdAndDelete as jest.Mock).mockResolvedValue({});
     });
 
-    test('Then if it has an object to delete, the readFile function should be called', async () => {
+    test('Then if it has an object to delete with its ID, the findByIdAndDelete function should be called', async () => {
       await repo.destroy('1');
-      expect(CharModel.findByIdAndRemove).toHaveBeenCalled();
+      expect(CharModel.findByIdAndDelete).toHaveBeenCalled();
+    });
+
+    test('Then if the findByIdAndDelete method resolve value to undefined, it should throw an Error', async () => {
+      (CharModel.findByIdAndDelete as jest.Mock).mockResolvedValue(null);
+      expect(async () => repo.destroy('')).rejects.toThrow();
     });
   });
 });
