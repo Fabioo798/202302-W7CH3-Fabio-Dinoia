@@ -3,6 +3,7 @@ import createDebug from 'debug';
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import { CustomError } from './errors/error';
+import { charsRouter } from './router/char.router.js';
 
 const debug = createDebug('W7CH3:app');
 
@@ -17,6 +18,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(express.static('public'));
+
+app.use('/chars', charsRouter);
+app.use('/chars/:id', charsRouter);
 
 app.use(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

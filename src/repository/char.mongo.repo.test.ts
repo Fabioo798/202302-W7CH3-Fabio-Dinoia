@@ -35,9 +35,11 @@ describe('Given', () => {
 
   describe('When i use create', () => {
     test('Then it should create a new Char', async () => {
-      (CharModel.find as jest.Mock).mockResolvedValue('[{"id": "1"}]');
+      (CharModel.create as jest.Mock).mockResolvedValue({ name: 'test' });
 
+      const result = await repo.create({ name: 'test' });
       expect(CharModel.create).toHaveBeenCalled();
+      expect(result).toEqual({ name: 'test' });
     });
   });
 
