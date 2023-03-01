@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "jest --watchAll --coverage",
-    "test:prod": "jest --watchAll --coverage watchAll=false ",
+    "test:prod": "jest --watchAll --coverage --watchAll=false --passWithNoTests",
     "start": "cross-env DEBUG=W7* PORT=4000 node ./dist/index.js",
     "start:mon": "cross-env DEBUG=W7* PORT=4000 nodemon ./dist/index.js",
     "build": "tsc -w",
