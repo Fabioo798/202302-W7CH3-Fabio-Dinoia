@@ -1,12 +1,10 @@
 /* eslint-disable max-nested-callbacks */
 import { NextFunction, Request, Response } from 'express';
-import { HTTPError } from '../../errors/error';
 import { UserRepo } from '../../repository/user/user.file.repo';
 import { Auth } from '../../services/auth';
 import { UserController } from './user.controller';
 
 jest.mock('../../services/auth');
-jest.mock('../../errors/error');
 
 describe('Given the UserController', () => {
   const repo: UserRepo = {
@@ -36,7 +34,7 @@ describe('Given the UserController', () => {
     const req = {
       body: {
         email: 'test',
-        password: 'test',
+        password: 'ciao123',
       },
     } as Request;
     test('Then json should be called', async () => {
@@ -57,7 +55,7 @@ describe('Given the UserController', () => {
     const req = {
       body: {
         email: 'test',
-        password: 'test',
+        password: 'ciao123',
       },
     } as Request;
 
@@ -74,7 +72,7 @@ describe('Given the UserController', () => {
       const req = {
         body: {
           email: '',
-          password: 'test',
+          password: 'ciao123',
         },
       } as Request;
       test('Then it should return a next response', async () => {
@@ -88,7 +86,7 @@ describe('Given the UserController', () => {
       const req = {
         body: {
           email: 'test',
-          password: 'test',
+          password: 'ciao123',
         },
       } as Request;
       test('Then it should return a next response', async () => {
@@ -109,40 +107,5 @@ describe('Given the UserController', () => {
         expect(next).toHaveBeenCalled();
       });
     });
-
-    //   Test('logIn should return a token for valid credentials', async () => {
-    //     const req = {
-    //       body: { email: 'test@example.com', password: 'password123' },
-    //     } as unknown as Request;
-    //     const resp = { json: jest.fn() } as unknown as Response;
-    //     const next = jest.fn();
-
-    //     await controller.logIn(req, resp, next);
-
-    //     expect(next).not.toHaveBeenCalled();
-    //     expect(resp.json).toHaveBeenCalledTimes(1);
-    //     expect(resp.json).toHaveBeenCalledWith(
-    //       expect.objectContaining({
-    //         results: expect.objectContaining({
-    //           token: expect.any(String),
-    //         }),
-    //       })
-    //     );
-    //   });
-
-    //   test('logIn should throw an error for invalid credentials', async () => {
-    //     const req = {
-    //       body: { email: 'test@example.com', password: 'invalid' },
-    //     } as unknown as Request;
-    //     const resp = { json: jest.fn() } as unknown as Response;
-    //     const next = jest.fn();
-
-    //     await controller.logIn(req, resp, next);
-
-    //     expect(resp.json).not.toHaveBeenCalled();
-    //     expect(next).toHaveBeenCalledTimes(1);
-    //     expect(next).toHaveBeenCalledWith(expect.any(HTTPError));
-    //   });
-    // });
   });
 });
