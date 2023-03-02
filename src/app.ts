@@ -2,8 +2,9 @@ import cors from 'cors';
 import createDebug from 'debug';
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
-import { CustomError } from './errors/error';
+import { CustomError } from './errors/error.js';
 import { charsRouter } from './router/char.router.js';
+import { usersRouter } from './router/user.router.js';
 
 const debug = createDebug('W7CH3:app');
 
@@ -21,6 +22,7 @@ app.use(express.static('public'));
 
 app.use('/chars', charsRouter);
 app.use('/chars/:id', charsRouter);
+app.use('/users', usersRouter)
 
 app.use(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

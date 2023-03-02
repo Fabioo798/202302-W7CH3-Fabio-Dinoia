@@ -1,8 +1,8 @@
 import createDebug from 'debug';
 import { Char } from '../entities/char.js';
-import { HTTPError } from '../errors/error';
-import { CharModel } from './chars.mongo.models';
-import { Repo } from './repo.interface';
+import { HTTPError } from '../errors/error.js';
+import { CharModel } from './chars.mongo.models.js';
+import { Repo } from './repo.interface.js';
 
 const debug = createDebug('W7CH3:repo');
 
@@ -19,6 +19,11 @@ export class CharRepo implements Repo<Char> {
     const data = await CharModel.findById(id);
     if (!data) throw new HTTPError(404, 'Not Found', 'Id not found');
     return data;
+  }
+
+  async search(_query: { key: string; value: unknown; }): Promise<Char[]> {
+    debug('search');
+    return [];
   }
 
   async create(info: Partial<Char>): Promise<Char> {
@@ -38,9 +43,15 @@ export class CharRepo implements Repo<Char> {
   }
 
   async destroy(id: string): Promise<void> {
-    debug('delete');
-    const data = await CharModel.findByIdAndRemove(id);
+    debug('destroy method');
+
+    const data = await CharModel.findByIdAndDelete(id);
+
     if (!data)
-      throw new HTTPError(404, 'Not found', 'Delete interrupted, id not found');
+      throw new HTTPError(
+        404,
+        'Not found',
+        'Delete not possible: ID not found '
+      );
   }
 }

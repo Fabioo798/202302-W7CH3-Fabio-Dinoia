@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
-import { CharRepo } from "../repository/char.mongo.repo";
-import { CharsController } from "./char.controller";
+import { NextFunction, Request, Response } from 'express';
+import { CharRepo } from '../repository/char.mongo.repo';
+import { CharsController } from './char.controller';
 
 describe('Given the  CharController', () => {
   const repo: CharRepo = {
@@ -9,6 +9,7 @@ describe('Given the  CharController', () => {
     create: jest.fn(),
     update: jest.fn(),
     destroy: jest.fn(),
+    search: jest.fn(),
   };
 
   const req = {

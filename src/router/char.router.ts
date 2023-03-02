@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { CharsController } from '../controller/char.controller';
-import { CharRepo } from '../repository/char.mongo.repo';
+import { CharsController } from '../controller/char.controller.js';
+import { CharRepo } from '../repository/char.mongo.repo.js';
 
 // eslint-disable-next-line new-cap
 export const charsRouter = Router();
