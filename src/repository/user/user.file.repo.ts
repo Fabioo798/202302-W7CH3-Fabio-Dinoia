@@ -30,7 +30,6 @@ export class UserRepo implements Repo<User> {
   async create(info: Partial<User>): Promise<User> {
     debug('create');
     const data = await UserModel.create(info);
-    console.log('create', data);
     return data;
   }
 

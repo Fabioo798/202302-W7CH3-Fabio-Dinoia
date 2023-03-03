@@ -1,4 +1,4 @@
-import { Char } from '../entities/char';
+import { Char } from '../../entities/char';
 import { CharRepo } from './char.mongo.repo';
 import { CharModel } from './chars.mongo.models';
 
@@ -14,11 +14,15 @@ describe('Given', () => {
 
   describe('When i use query', () => {
     test('Then should return the data', async () => {
-      (CharModel.find as jest.Mock).mockResolvedValue([]);
+      const mockData = [{ chars: 'test' }];
+      (CharModel.find as jest.Mock).mockImplementation(() => ({
+        populate: jest.fn().mockResolvedValue(mockData),
+      }));
+
       const result = await repo.query();
 
       expect(CharModel.find).toHaveBeenCalled();
-      expect(result).toEqual([]);
+      expect(result).toEqual(mockData);
     });
   });
 

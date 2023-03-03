@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema, SchemaTypes } from 'mongoose';
 import { User } from '../../entities/user.js';
 
 const userSchema = new Schema<User>({
@@ -12,6 +12,12 @@ const userSchema = new Schema<User>({
     required: true,
     unique: true,
   },
+  chars: [
+    {
+      type: SchemaTypes.ObjectId,
+      ref: 'Char',
+    },
+  ],
 });
 
 userSchema.set('toJSON', {
@@ -19,7 +25,7 @@ userSchema.set('toJSON', {
     returnedObject.id = returnedObject._id;
     delete returnedObject.__v;
     delete returnedObject._id;
-    delete returnedObject._password;
+    delete returnedObject.password;
   },
 });
 

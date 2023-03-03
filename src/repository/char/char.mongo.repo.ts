@@ -1,15 +1,15 @@
 import createDebug from 'debug';
-import { Char } from '../entities/char.js';
-import { HTTPError } from '../errors/error.js';
+import { Char } from '../../entities/char.js';
+import { HTTPError } from '../../errors/error.js';
 import { CharModel } from './chars.mongo.models.js';
-import { Repo } from './repo.interface.js';
+import { Repo } from './../repo.interface.js';
 
 const debug = createDebug('W7CH3:repo');
 
 export class CharRepo implements Repo<Char> {
   async query(): Promise<Char[]> {
     debug('query');
-    const data = await CharModel.find();
+    const data = await CharModel.find().populate('owner', { chars: 0 });
 
     return data;
   }
@@ -21,7 +21,7 @@ export class CharRepo implements Repo<Char> {
     return data;
   }
 
-  async search(_query: { key: string; value: unknown; }): Promise<Char[]> {
+  async search(_query: { key: string; value: unknown }): Promise<Char[]> {
     debug('search');
     return [];
   }

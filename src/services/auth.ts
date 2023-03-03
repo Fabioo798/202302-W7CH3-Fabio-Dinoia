@@ -2,7 +2,8 @@ import jwt from 'jsonwebtoken';
 import { config } from '../config.js';
 import bcrypt from 'bcryptjs';
 
-export type PayLoadToken = {
+export interface PayLoadToken extends jwt.JwtPayload {
+  id: string,
   email: string;
   role: string;
 };
@@ -16,10 +17,10 @@ export class Auth {
     return jwt.sign(payload, config.jwtsecret);
   }
 
-  static verifyJWT(token: string) {
+  static verifyJWTgettingPayload(token: string): PayLoadToken {
     const result = jwt.verify(token, config.jwtsecret as string);
-    if (typeof result === 'string') throw new Error('Invalid payload');
-    return result;
+    if (typeof result === 'string') throw new Error(result);
+    return result as PayLoadToken;
   }
 
   static hash(value: string) {

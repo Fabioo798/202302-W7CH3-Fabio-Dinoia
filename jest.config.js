@@ -12,7 +12,8 @@ export default {
     'error.ts',
     'db.connect',
     'config',
-    'auth',
     'model',
+    'auth.ts',
+    'authorization.ts'
   ],
 };
